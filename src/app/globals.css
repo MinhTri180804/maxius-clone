@@ -14,6 +14,10 @@
   --color-foreground: var(--foreground);
   --color-background-story: var(--background-white);
   --font-roboto: var(--font-roboto);
+  --color-language-selected: var(--color-deep-saffron);
+  --color-language-unselected: var(--color-black);
+  --color-title-hero-section: var(--color-space-cadet);
+  --color-description-hero-section: var(--color-dark-jungle-green);
 }
 
 body {
