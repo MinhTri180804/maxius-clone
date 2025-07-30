@@ -2,7 +2,7 @@ import Section from '@/components/commons/Section';
 
 export default function HeroSection() {
   return (
-    <Section className="bg-[url('/hero_banner.png')] bg-cover flex flex-col gap-[34px] items-start px-[39px] justify-center">
+    <Section className="bg-[url('/hero_banner.png')] bg-cover flex flex-col gap-[34px] items-start justify-center">
       <h1 className="uppercase text-[45px] font-roboto font-bold leading-[45px] text-title-hero-section">
         Max I & US
       </h1>

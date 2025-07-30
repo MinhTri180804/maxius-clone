@@ -18,6 +18,7 @@
   --color-language-unselected: var(--color-black);
   --color-title-hero-section: var(--color-space-cadet);
   --color-description-hero-section: var(--color-dark-jungle-green);
+  --color-highlight-text: var(--color-deep-saffron);
 }
 
 body {
