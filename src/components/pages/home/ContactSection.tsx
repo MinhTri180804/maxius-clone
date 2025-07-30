@@ -3,6 +3,7 @@
 import Section from '@/components/commons/Section';
 import { ComponentProps, FC, PropsWithChildren } from 'react';
 import { motion, Variants } from 'motion/react';
+import { twMerge } from 'tailwind-merge';
 
 export default function ContactSection() {
   return (
@@ -12,7 +13,16 @@ export default function ContactSection() {
     >
       <motion.div
         onViewportEnter={() => (window.location.hash = '#contact')}
-        className="absolute bottom-[15%] left-[50px]"
+        className={twMerge(
+          // Global responsive
+          'absolute  ',
+          // Mobile responsive
+          'left-[50px] bottom-[15%] w-[70%]',
+          // Tablet responsive
+          '',
+          // Desktop responsive
+          'lg:left-[180px]'
+        )}
       >
         <ul className="w-full h-fit flex flex-col gap-[30px]">
           <ContactItem title="Company.">
@@ -42,13 +52,33 @@ interface IContactItemProps extends ComponentProps<'li'>, PropsWithChildren {
 
 const ContactItem: FC<IContactItemProps> = ({ title, children }) => {
   return (
-    <li className="flex flex-col gap-3 items-start">
+    <li
+      className={twMerge(
+        // Global responsive
+        'flex flex-col items-start',
+        // Mobile responsive
+        'gap-3',
+        // Tablet responsive
+        'md:gap-1',
+        // Desktop responsive
+        ''
+      )}
+    >
       <motion.h2
         variants={titleVariants}
         initial="offscreen"
         whileInView="onscreen"
         viewport={{ amount: 0.2 }}
-        className="font-extrabold text-[20.5px] text-white"
+        className={twMerge(
+          // Global responsive
+          'font-extrabold  text-white',
+          // Mobile responsive
+          'text-[20.5px]',
+          // Tablet responsive
+          'md:text-[34px]',
+          // Desktop responsive
+          ''
+        )}
       >
         {title}
       </motion.h2>
@@ -57,7 +87,16 @@ const ContactItem: FC<IContactItemProps> = ({ title, children }) => {
         initial="offscreen"
         whileInView="onscreen"
         viewport={{ amount: 0.2 }}
-        className="text-[13.5px] px-[12.5px] text-white font-light py-[7px]"
+        className={twMerge(
+          // Global responsive
+          'px-[12.5px] text-white font-light',
+          // Mobile responsive
+          'text-[13.5px] py-[7px]',
+          // Tablet responsive
+          'md:text-[16px] md:py-0',
+          // Desktop responsive
+          ''
+        )}
       >
         {children}
       </motion.div>

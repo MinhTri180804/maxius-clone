@@ -25,7 +25,7 @@ export default function NavigateContent() {
   };
 
   return (
-    <ul className="flex flex-col gap-1 z-30 items-end fixed top-1/2 right-[39px]">
+    <ul className="flex flex-col gap-2 z-30 items-end fixed top-1/2 right-[39px]">
       <NavigateItem
         isActive={sectionActive === '#hero'}
         onClick={() => handleClick('hero')}
@@ -81,7 +81,7 @@ const NavigateItem = ({
   return (
     <li
       className={twMerge(
-        classNames('h-[7px] transition-all duration-150', {
+        classNames('h-[7px] transition-all duration-150 cursor-pointer', {
           'w-[7px] bg-[#fff]': !isActive,
           'w-[30px] bg-[#ff9933]': isActive,
         }),

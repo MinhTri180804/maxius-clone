@@ -1,6 +1,7 @@
 'use client';
 import Section from '@/components/commons/Section';
 import { motion, Variants } from 'motion/react';
+import { twMerge } from 'tailwind-merge';
 
 export default function HeroSection() {
   return (
@@ -8,40 +9,80 @@ export default function HeroSection() {
       id="hero"
       className="bg-[url('/hero_banner.png')] bg-cover flex flex-col gap-[34px] items-start justify-center"
     >
-      <motion.h1
-        variants={variantTitle}
-        initial="offscreen"
-        whileInView="onscreen"
-        onViewportEnter={() => (window.location.hash = '#hero')}
-        className="uppercase text-[45px] font-roboto font-bold leading-[45px] text-title-hero-section"
+      <div
+        className={twMerge(
+          // Global responsive
+          'flex flex-col gap-[34px] items-start',
+          // Mobile responsive
+          '',
+          // Tablet responsive
+          'md:ml-[5%] md:mt-[40%]',
+          // Desktop responsive
+          'lg:ml-[10%] lg:mt-[20%]'
+        )}
       >
-        Max I & US
-      </motion.h1>
-      <div className="w-[247px] flex flex-col gap-5 font-light text-[15px] text-description-hero-section">
-        <motion.p
-          variants={variantDescription}
+        <motion.h1
+          variants={variantTitle}
           initial="offscreen"
           whileInView="onscreen"
-          className="flex flex-col gap-0 items-start"
+          onViewportEnter={() => (window.location.hash = '#hero')}
+          className={twMerge(
+            // Global responsive
+            'uppercase font-roboto font-bold text-title-hero-section',
+            // Mobile responsive
+            'text-[45px] leading-[45px]',
+            // Tablet responsive
+            'md:text-[95px] leading-[92px]'
+          )}
         >
-          <span>Maxius is the only self-developed</span>
-          <span>semiconductor company that </span>
-          <span>focuses on developing High-Performance </span>
-          <span>Servers. We provide specialized </span>
-          <span>solutions tailored towards different </span>
-          <span>sectors of the IT industry and strive </span>
-          <span>to break into the global market as a </span>
-          <span>leader in server technology.</span>
-        </motion.p>
+          Max I & US
+        </motion.h1>
+        <div
+          className={twMerge(
+            // Global responsive
+            'flex flex-col font-light text-description-hero-section',
+            // Mobile responsive
+            'text-[15px] gap-5',
+            // Tablet responsive
+            'md:text-[20.5px] leading-[1.41]  md:gap-20'
+          )}
+        >
+          <motion.p
+            variants={variantDescription}
+            initial="offscreen"
+            whileInView="onscreen"
+            className={twMerge(
+              // Global responsive
+              'flex flex-col gap-0 items-start',
+              // Mobile responsive
+              'w-[247px]',
+              // Tablet responsive
+              'md:w-[415px]'
+            )}
+          >
+            Maxius is the only self-developed semiconductor company that focuses
+            on developing High-Performance Servers. We provide specialized
+            solutions tailored towards different sectors of the IT industry and
+            strive to break into the global market as a leader in server
+            technology.
+          </motion.p>
 
-        <motion.p
-          variants={variantFooterDescription}
-          initial="offscreen"
-          whileInView="onscreen"
-          className="flex flex-col gap-0 items-start"
-        >
-          Together, we will be the best in value and speed.
-        </motion.p>
+          <motion.p
+            variants={variantFooterDescription}
+            initial="offscreen"
+            whileInView="onscreen"
+            className={twMerge(
+              // Global responsive
+              'flex flex-col gap-0 items-start',
+              // Mobile responsive
+              'w-[247px]',
+              // Tablet responsive
+              'md:w-full'
+            )}
+          >
+            Together, we will be the best in value and speed.
+          </motion.p>
+        </div>
       </div>
     </Section>
   );

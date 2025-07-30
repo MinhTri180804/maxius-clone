@@ -18,7 +18,17 @@ export const Toggle = ({
   return (
     <button
       {...props}
-      className={twMerge('top-[30px] right-[39px] mt-1 fixed z-50', className)}
+      className={twMerge(
+        // Global responsive
+        'right-[39px] mt-1 fixed z-50 cursor-pointer',
+        // Mobile responsive
+        'top-[30px]',
+        // Tablet responsive
+        'md:top-[39px]',
+        // Desktop responsive
+        'lg:right-[100px] lg:top-[60px]',
+        className
+      )}
     >
       <motion.svg
         width="30"

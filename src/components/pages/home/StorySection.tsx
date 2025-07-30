@@ -8,20 +8,38 @@ import { ComponentProps, FC, PropsWithChildren } from 'react';
 import { motion } from 'motion/react';
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { twMerge } from 'tailwind-merge';
 
 export default function StorySection() {
   return (
     <Section
       id="story"
-      className="px-[39px] flex flex-col gap-5 items-center justify-center bg-white"
+      className={twMerge(
+        // Global responsive
+        'px-[39px] flex flex-col gap-5 items-center justify-center bg-white',
+        // Mobile responsive
+        '',
+        // Tablet responsive
+        'md:gap-0',
+        // Desktop responsive
+        ''
+      )}
     >
       <motion.h2
         variants={titleVariants}
         initial="offscreen"
         whileInView="onscreen"
-        viewport={{ amount: 1 }}
         onViewportEnter={() => (window.location.hash = '#story')}
-        className="font-bold text-[25px] text-black uppercase w-full text-center"
+        className={twMerge(
+          // Global responsive
+          'font-bold text-[25px] text-black uppercase w-full text-center',
+          // Mobile responsive
+          '',
+          // Tablet responsive
+          'md:text-[30px] md:font-extrabold md:pb-[40px]',
+          // Desktop responsive
+          'lg:text-[98.5px]'
+        )}
       >
         STORY
       </motion.h2>
@@ -29,15 +47,39 @@ export default function StorySection() {
         variants={contentVariants}
         initial="offscreen"
         whileInView="onscreen"
-        viewport={{ amount: 0.5 }}
-        className="w-full overflow-x-auto flex gap-0 items-stretch"
+        className={twMerge(
+          // Global responsive
+          'overflow-x-auto flex gap-0 items-stretch',
+          // Mobile responsive
+          'w-full',
+          // Tablet responsive
+          'md:w-[90%]',
+          // Desktop responsive
+          'lg:w-[70%]'
+        )}
       >
-        <Swiper>
+        <Swiper
+          breakpoints={{
+            320: {
+              slidesPerView: 1,
+            },
+            768: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: 4,
+            },
+          }}
+          className="w-full"
+        >
           <SwiperSlide>
             <StoryContentHistory />
           </SwiperSlide>
           <SwiperSlide>
             <StoryContentPartners />
+          </SwiperSlide>
+          <SwiperSlide>
+            <StoryContentHistory />
           </SwiperSlide>
           <SwiperSlide>
             <StoryContentHistory />
@@ -171,12 +213,32 @@ interface IStoryItemProps extends ComponentProps<'div'>, PropsWithChildren {
 const StoryItem: FC<IStoryItemProps> = ({ title, children, ...props }) => {
   return (
     <div
-      className={classNames(
-        'flex min-w-full flex-col gap-5 items-start justify-stretch px-[30px] select-none'
+      className={twMerge(
+        // Global responsive
+        'flex min-w-full flex-col gap-5 items-start justify-stretch px-[30px] select-none',
+        // Mobile responsive
+        'w-full',
+        // Tablet responsive
+        'md:px-0',
+        // Desktop responsive
+        ''
       )}
       {...props}
     >
-      <h5 className="font-bold text-xl text-black w-full">{title}</h5>
+      <h5
+        className={twMerge(
+          // Global responsive
+          'font-bold text-xl text-black w-full',
+          // Mobile responsive
+          '',
+          // Tablet responsive
+          'md:px-[30px]',
+          // Desktop responsive
+          'lg:text-[39.5px]'
+        )}
+      >
+        {title}
+      </h5>
       {children}
     </div>
   );
@@ -193,8 +255,15 @@ const StoryItemPartList: FC<IStoryItemPartListProps> = ({
 }) => {
   return (
     <ul
-      className={classNames(
+      className={twMerge(
+        // Global responsive
         'flex flex-col gap-5 items-start w-full justify-stretch max-h-[310px] overflow-y-auto no-scrollbar',
+        // Mobile responsive
+        '',
+        // Tablet responsive
+        'md:border-r md:px-[30px]',
+        // Desktop responsive
+        '',
         className
       )}
       {...props}
@@ -254,7 +323,7 @@ const titleVariants: Variants = {
 const contentVariants: Variants = {
   offscreen: {
     opacity: 0,
-    x: -50,
+    x: -200,
 
     transition: {
       duration: 0.5,

@@ -57,7 +57,16 @@ export default function Sidebar() {
     <div className="z-50">
       <ToggleSidebar isOpen={isOpen} onClick={handleToggle} />
       <motion.div
-        className="fixed top-0 right-0  w-[90%] h-dvh z-40 bg-[url('/sidebar_background.png')] bg-cover"
+        className={twMerge(
+          // Global responsive
+          "fixed top-0 right-0 h-dvh z-40 bg-[url('/sidebar_background.png')] bg-cover",
+          // Mobile responsive
+          'w-[90%]',
+          // Tablet responsive
+          'md:w-[70%]',
+          // Desktop responsive
+          'lg:w-[532px]'
+        )}
         animate={isOpen ? 'open' : 'closed'}
         initial="closed"
         transition={{ duration: 0.2, ease: 'easeOut' }}
@@ -67,9 +76,18 @@ export default function Sidebar() {
         }}
       >
         <div className="w-full h-full px-[25px] flex flex-col items-start justify-between pt-[140px] pb-[30px]">
-          <ul className="flex flex-col gap-[25px]">
+          <ul className="flex flex-col gap-[25px] shrink overflow-y-auto">
             <li
-              className="text-[var(--color-deep-saffron)] font-bold text-xl"
+              className={twMerge(
+                // Global responsive
+                'text-[var(--color-deep-saffron)] cursor-pointer',
+                // Mobile responsive
+                'text-xl font-bold ',
+                // Tablet responsive
+                '',
+                // Desktop responsive
+                'lg:text-[36px] lg:font-light'
+              )}
               onClick={handleToggle}
             >
               Home
@@ -83,12 +101,24 @@ export default function Sidebar() {
                 onClick={() => handleSelectOption(item.title)}
               />
             ))}
-            <li className="text-white font-bold text-xl" onClick={handleToggle}>
+            <li
+              className={twMerge(
+                // Global responsive
+                'text-white cursor-pointer',
+                // Mobile responsive
+                'text-xl font-bold ',
+                // Tablet responsive
+                '',
+                // Desktop responsive
+                'lg:text-[36px] lg:font-light'
+              )}
+              onClick={handleToggle}
+            >
               Contact
             </li>
           </ul>
 
-          <div className="w-full items-start">
+          <div className="w-full items-start grow-0">
             <div className="pt-[10px] pb-[30px] border-t border-white">
               <p className="text-xs text-white">
                 5F 12-30, Simin-daero 327beon-gil, Dongan-gu, Anyang-si,
@@ -146,16 +176,29 @@ const ToggleSidebar = ({ isOpen, ...props }: ToggleSidebarProps) => {
         }
         {...props}
       />
-      <div className="fixed text-black top-[60px] right-[39px] mt-2 z-50 flex items-center gap-[10px] text-[17px] font-roboto font-light">
-        <span className="text-language-selected">EN</span>
-        <span
-          className={classNames('transition-all duration-150', {
-            'text-white':
-              isOpen || whiteColorInSections.includes(sectionActive || ''),
-          })}
-        >
-          KR
-        </span>
+      <div
+        className={twMerge(
+          // Global responsive
+          'fixed text-black mt-2 z-50 flex items-center gap-[10px] text-[17px] font-roboto font-light',
+          // Mobile responsive
+          'right-[39px] top-[70px]',
+          // Tablet responsive
+          // Desktop responsive
+          'lg:right-[100px] lg:top-[100px]'
+        )}
+      >
+        <LanguageSelect
+          name="EN"
+          isActive={isOpen}
+          isOpen={isOpen}
+          sectionActive={sectionActive}
+        />
+        <LanguageSelect
+          name="KR"
+          isActive={!isOpen}
+          isOpen={isOpen}
+          sectionActive={sectionActive}
+        />
       </div>
     </div>
   );
@@ -179,28 +222,97 @@ const OptionMenuItem: FC<IOptionMenuItemProps> = ({
       animate={{ height: 'auto', gap: isActive ? '25px' : '0' }}
       transition={{ duration: 0.2, ease: 'easeOut' }}
       className={twMerge(
-        classNames('text-white flex flex-col gap-5', {
+        // Global responsive
+        'text-white flex flex-col gap-5',
+        // Mobile responsive
+        '',
+        // Tablet responsive
+        '',
+        // Desktop responsive
+        '',
+        classNames({
           'text-[var(--color-deep-saffron)]': isActive,
         }),
         className
       )}
       onClick={onClick}
     >
-      <h5 className="font-bold text-xl">{titleText}</h5>
+      <h5
+        className={twMerge(
+          // Global responsive
+          'cursor-pointer',
+          // Mobile responsive
+          'font-bold text-xl',
+          // Tablet responsive
+          '',
+          // Desktop responsive
+          'lg:text-[36px] lg:font-light'
+        )}
+      >
+        {titleText}
+      </h5>
       <motion.ul
-        className="flex flex-col w-full gap-5 items-start text-xs text-white"
+        className={twMerge(
+          // Global responsive
+          'flex flex-col w-full gap-5 items-start  text-white',
+          // Mobile responsive
+          'text-xs',
+          // Tablet responsive
+          '',
+          // Desktop responsive
+          'lg:text-[17.5px]'
+        )}
         animate={isActive ? 'open' : 'closed'}
         initial="closed"
         transition={{ duration: 0.2, ease: 'easeOut' }}
         variants={optionMenuItemListVariants}
       >
         {items.map((item, index) => (
-          <li className="px-[10px]" key={`${titleText}_${index}`}>
+          <li
+            className="px-[10px] cursor-pointer"
+            key={`${titleText}_${index}`}
+          >
             {item}
           </li>
         ))}
       </motion.ul>
     </motion.li>
+  );
+};
+
+type ILanguageSelectProps = {
+  isActive: boolean;
+  name: string;
+  isOpen: boolean;
+  sectionActive: string | null;
+};
+
+const LanguageSelect: FC<ILanguageSelectProps> = ({
+  isActive,
+  name,
+  isOpen,
+  sectionActive,
+}) => {
+  return (
+    <span
+      className={twMerge(
+        // Global responsive
+        'cursor-pointer',
+        // Mobile responsive
+        '',
+        // Tablet responsive
+        'md:text-[21px]',
+        // Desktop responsive
+        '',
+        classNames({
+          'text-white':
+            isOpen || whiteColorInSections.includes(sectionActive || ''),
+          'text-language-selected': !isActive,
+        })
+      )}
+    >
+      {name}
+    </span>
   );
 };
 

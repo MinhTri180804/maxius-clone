@@ -2,19 +2,30 @@
 import HighlightText from '@/components/commons/HighlightText';
 import Section from '@/components/commons/Section';
 import classNames from 'classnames';
-import { ComponentProps, PropsWithChildren, useMemo, useState } from 'react';
 import { motion } from 'motion/react';
+import { ComponentProps, PropsWithChildren, useState } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 export default function AboutSection() {
   const [openId, setOpenId] = useState<string | null>(null);
   return (
     <Section
       id="about"
-      className="flex justify-center px-[39px] items-center bg-[url('/about_banner.png')] bg-cover"
+      className="flex justify-center px-[39px] items-center bg-[url('/about_banner.png')] bg-cover relative"
     >
       <motion.ul
         onViewportEnter={() => (window.location.hash = '#about')}
-        className="flex flex-col gap-0  pr-[35px] w-full"
+        viewport={{ amount: 0.1 }}
+        className={twMerge(
+          // Global responsive
+          'flex flex-col gap-0 pr-[35px] w-full',
+          // Mobile responsive
+          '',
+          // Tablet responsive
+          'md:w-[90%]',
+          // Desktop responsive
+          'lg:flex-row pr-0 lg:w-[70%] lg:justify-center lg:h-full'
+        )}
       >
         <AboutSectionItem
           title="Product"
@@ -119,28 +130,24 @@ const AboutSectionItem = ({
   index,
   ...props
 }: IAboutSectionItemProps) => {
-  const classname = useMemo(
-    () =>
-      classNames(
-        'flex flex-col p-5 gap-[20px] pb-12 border-b border-[#ffffff52]',
-        {
+  return (
+    <li
+      className={twMerge(
+        // Global responsive
+        'flex flex-1 flex-col p-5 gap-[20px] pb-12  border-[#ffffff52] group',
+        // Mobile responsive
+        'border-b',
+        // Tablet responsive
+        '',
+        // Desktop responsive
+        'lg:border-b-0 lg:border-r lg:relative lg:justify-start lg:h-full lg:pt-[30dvh] lg:hover:flex-2 lg:transition-all  lg:cursor-pointer',
+        classNames({
           'pb-5': isLast,
           'border-b-0': isLast,
-        }
-      ),
-    [isLast]
-  );
-
-  const classnameTitle = useMemo(
-    () =>
-      classNames('text-xl font-bold', {
-        'text-[var(--color-deep-saffron)]': highlightTitle,
-        'text-white': !highlightTitle,
-      }),
-    [highlightTitle]
-  );
-  return (
-    <li className={classname} {...props}>
+        })
+      )}
+      {...props}
+    >
       <motion.h2
         whileInView={{
           opacity: 1,
@@ -156,12 +163,48 @@ const AboutSectionItem = ({
           ease: 'easeOut',
         }}
         viewport={{ amount: 0.5 }}
-        className={classnameTitle}
+        className={twMerge(
+          // Global responsive
+          'text-xl font-bold',
+          // Mobile responsive
+          '',
+          // Tablet responsive
+          '',
+          // Desktop responsive
+          'lg:text-[30px]',
+          classNames({
+            'text-[var(--color-deep-saffron)]': highlightTitle,
+            'text-white': !highlightTitle,
+          })
+        )}
       >
         {title}
       </motion.h2>
       <motion.p
-        className="text-[10px] leading-[16px]  text-white overflow-hidden"
+        className={twMerge(
+          // Global responsive
+          'text-[10px] leading-[16px]  text-white',
+          // Mobile responsive
+          'hidden',
+          // Tablet responsive
+          '',
+          // Desktop responsive
+          'lg:block lg:w-full lg:opacity-0 lg:group-hover:opacity-100 lg:text-sm lg:leading-[22px]'
+        )}
+      >
+        {children}
+      </motion.p>
+      <motion.p
+        className={twMerge(
+          // Global responsive
+          'text-[10px] leading-[16px]  text-white overflow-hidden',
+          // Mobile responsive
+          '',
+          // Tablet responsive
+          'md:text-[12px] md:leading-[22px]',
+          // Desktop responsive
+          'lg:hidden'
+        )}
         animate={isOpen ? 'open' : 'closed'}
         initial="closed"
         transition={{ duration: 0.2, ease: 'linear' }}

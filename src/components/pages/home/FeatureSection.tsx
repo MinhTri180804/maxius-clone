@@ -2,6 +2,7 @@
 import Section from '@/components/commons/Section';
 import HighlightText from '@/components/commons/HighlightText';
 import { motion, Variants } from 'motion/react';
+import { twMerge } from 'tailwind-merge';
 
 export default function FeatureSection() {
   return (
@@ -14,7 +15,16 @@ export default function FeatureSection() {
         initial="offscreen"
         whileInView="onscreen"
         onViewportEnter={() => (window.location.hash = '#feature')}
-        className="text-xl font-bold break-all mx-[10%] text-white whitespace-pre-wrap"
+        className={twMerge(
+          // Global responsive
+          'text-xl font-bold break-all mx-[10%] px-[25px] leading-[1.18] text-white whitespace-pre-wrap',
+          // Mobile responsive
+          '',
+          // Tablet responsive
+          '',
+          // Desktop responsive
+          'lg:text-[50px] lg:max-w-[1200px]'
+        )}
       >
         1. <HighlightText>Self-produced</HighlightText> semiconductors 2.
         Production and Sales of <HighlightText>H</HighlightText>igh-
