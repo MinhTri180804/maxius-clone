@@ -9,12 +9,14 @@ const colorBasedOnHash = {
 };
 
 export default function Logo() {
-  const [hash, setHash] = useState(window.location.hash);
+  const [hash, setHash] = useState<string | null>(null);
 
   useEffect(() => {
     const handleHashChange = () => {
       setHash(window.location.hash);
     };
+
+    handleHashChange();
 
     window.addEventListener('hashchange', handleHashChange);
 
@@ -26,8 +28,8 @@ export default function Logo() {
   const classname = classNames(
     'font-roboto uppercase text-[20.5px] fixed top-[30px] left-[39px] font-bold',
     {
-      'text-dark-jungle-green': colorBasedOnHash.black.includes(hash),
-      'text-white': colorBasedOnHash.white.includes(hash),
+      'text-dark-jungle-green': hash && colorBasedOnHash.black.includes(hash),
+      'text-white': hash && colorBasedOnHash.white.includes(hash),
     }
   );
 

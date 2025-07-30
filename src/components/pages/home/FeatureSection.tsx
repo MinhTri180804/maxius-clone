@@ -1,6 +1,5 @@
 import Section from '@/components/commons/Section';
-import classNames from 'classnames';
-import { ComponentProps, PropsWithChildren } from 'react';
+import HighlightText from '@/components/commons/HighlightText';
 
 export default function FeatureSection() {
   return (
@@ -18,19 +17,3 @@ export default function FeatureSection() {
     </Section>
   );
 }
-
-interface IHighlightTextProps
-  extends PropsWithChildren,
-    ComponentProps<'span'> {}
-
-const HighlightText = ({
-  children,
-  className,
-  ...props
-}: IHighlightTextProps) => {
-  return (
-    <span className={classNames('text-highlight-text', className)} {...props}>
-      {children}
-    </span>
-  );
-};
