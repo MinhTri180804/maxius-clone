@@ -14,6 +14,7 @@ export default function AboutSection() {
           title="Product"
           isOpen={openId === 'Product'}
           onClick={() => setOpenId('Product')}
+          index={0}
         >
           <HighlightText>High-Performance Server</HighlightText> with an
           extensive selection of serviceable capabilities <br />
@@ -30,6 +31,7 @@ export default function AboutSection() {
           title="Technology"
           isOpen={openId === 'Technology'}
           onClick={() => setOpenId('Technology')}
+          index={1}
         >
           Based on more than 20 years of research know-how <br />
           and technology, we are the only company in Korea extensive selection{' '}
@@ -49,6 +51,7 @@ export default function AboutSection() {
           title="Application"
           isOpen={openId === 'Application'}
           onClick={() => setOpenId('Application')}
+          index={2}
         >
           Maxius&apos; miscellaneous products are used for{' '}
           <HighlightText>AI/genetic analysis, </HighlightText> <br />
@@ -70,6 +73,7 @@ export default function AboutSection() {
           title="Blockchain"
           isOpen={openId === 'Blockchain'}
           onClick={() => setOpenId('Blockchain')}
+          index={3}
           isLast
           highlightTitle
         >
@@ -97,6 +101,7 @@ interface IAboutSectionItemProps
   isLast?: boolean;
   isOpen: boolean;
   highlightTitle?: boolean;
+  index: number;
 }
 
 const AboutSectionItem = ({
@@ -105,6 +110,7 @@ const AboutSectionItem = ({
   isOpen,
   children,
   highlightTitle = false,
+  index,
   ...props
 }: IAboutSectionItemProps) => {
   const classname = useMemo(
@@ -129,16 +135,35 @@ const AboutSectionItem = ({
   );
   return (
     <li className={classname} {...props}>
-      <h2 className={classnameTitle}>{title}</h2>
+      <motion.h2
+        whileInView={{
+          opacity: 1,
+          y: 0,
+        }}
+        initial={{
+          opacity: 0,
+          y: (index + 1) % 2 === 0 ? 100 : -100,
+        }}
+        transition={{
+          duration: 0.2,
+          delay: 0.2 * index + 1,
+          ease: 'easeOut',
+        }}
+        viewport={{ amount: 0.5 }}
+        className={classnameTitle}
+      >
+        {title}
+      </motion.h2>
       <motion.p
         className="text-[10px] leading-[16px]  text-white overflow-hidden"
         animate={isOpen ? 'open' : 'closed'}
         initial="closed"
-        transition={{ duration: 0.2, ease: 'easeOut' }}
+        transition={{ duration: 0.2, ease: 'linear' }}
         variants={{
           open: { y: '0', height: 'auto' },
           closed: { y: '100%', height: 0 },
         }}
+        viewport={{ amount: 0.5 }}
       >
         {children}
       </motion.p>

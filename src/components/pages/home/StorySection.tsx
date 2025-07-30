@@ -17,6 +17,7 @@ export default function StorySection() {
         initial="offscreen"
         whileInView="onscreen"
         viewport={{ amount: 1 }}
+        onViewportEnter={() => (window.location.hash = '#story')}
         className="font-bold text-[25px] text-black uppercase w-full text-center"
       >
         STORY
