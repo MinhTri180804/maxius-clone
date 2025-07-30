@@ -8,8 +8,14 @@ import { motion } from 'motion/react';
 export default function AboutSection() {
   const [openId, setOpenId] = useState<string | null>(null);
   return (
-    <Section className="flex justify-center px-[39px] items-center bg-[url('/about_banner.png')] bg-cover">
-      <ul className="flex flex-col gap-0  pr-[35px] w-full">
+    <Section
+      id="about"
+      className="flex justify-center px-[39px] items-center bg-[url('/about_banner.png')] bg-cover"
+    >
+      <motion.ul
+        onViewportEnter={() => (window.location.hash = '#about')}
+        className="flex flex-col gap-0  pr-[35px] w-full"
+      >
         <AboutSectionItem
           title="Product"
           isOpen={openId === 'Product'}
@@ -89,7 +95,7 @@ export default function AboutSection() {
           decentralized storage to match customer needs and create the best
           added value.
         </AboutSectionItem>
-      </ul>
+      </motion.ul>
     </Section>
   );
 }

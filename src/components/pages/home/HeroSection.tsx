@@ -4,7 +4,10 @@ import { motion, Variants } from 'motion/react';
 
 export default function HeroSection() {
   return (
-    <Section className="bg-[url('/hero_banner.png')] bg-cover flex flex-col gap-[34px] items-start justify-center">
+    <Section
+      id="hero"
+      className="bg-[url('/hero_banner.png')] bg-cover flex flex-col gap-[34px] items-start justify-center"
+    >
       <motion.h1
         variants={variantTitle}
         initial="offscreen"

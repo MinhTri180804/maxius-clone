@@ -1,4 +1,5 @@
 import Logo from '@/components/Logo';
+import NavigateContent from '@/components/commons/NavigateSection';
 import Sidebar from '@/components/Sidebar';
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
@@ -28,6 +29,7 @@ export default function RootLayout({
       >
         <Logo />
         <Sidebar />
+        <NavigateContent />
         <main className="w-full h-dvh overflow-y-scroll snap-y snap-mandatory ">
           {children}
         </main>

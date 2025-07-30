@@ -3,10 +3,7 @@
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 
-const colorBasedOnHash = {
-  white: ['#firstPage'],
-  black: ['#secondPage'],
-};
+const whiteColorLogoSections = ['#feature', '#about', '#contact'];
 
 export default function Logo() {
   const [hash, setHash] = useState<string | null>(null);
@@ -26,10 +23,9 @@ export default function Logo() {
   }, []);
 
   const classname = classNames(
-    'font-roboto uppercase text-[20.5px] fixed top-[30px] left-[39px] font-bold',
+    'font-roboto uppercase text-dark-jungle-green text-[20.5px] fixed top-[30px] left-[39px] font-bold z-40 transition-all duration-300 ease-in-out',
     {
-      'text-dark-jungle-green': hash && colorBasedOnHash.black.includes(hash),
-      'text-white': hash && colorBasedOnHash.white.includes(hash),
+      'text-white': hash && whiteColorLogoSections.includes(hash),
     }
   );
 

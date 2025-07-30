@@ -11,7 +11,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 export default function StorySection() {
   return (
-    <Section className="px-[39px] flex flex-col gap-5 items-center justify-center bg-white">
+    <Section
+      id="story"
+      className="px-[39px] flex flex-col gap-5 items-center justify-center bg-white"
+    >
       <motion.h2
         variants={titleVariants}
         initial="offscreen"

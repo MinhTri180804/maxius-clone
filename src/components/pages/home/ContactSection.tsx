@@ -6,8 +6,14 @@ import { motion, Variants } from 'motion/react';
 
 export default function ContactSection() {
   return (
-    <Section className="bg-[url('/contact_banner.png')] bg-cover relative ">
-      <div className="absolute bottom-[15%] left-[50px]">
+    <Section
+      id="contact"
+      className="bg-[url('/contact_banner.png')] bg-cover relative "
+    >
+      <motion.div
+        onViewportEnter={() => (window.location.hash = '#contact')}
+        className="absolute bottom-[15%] left-[50px]"
+      >
         <ul className="w-full h-fit flex flex-col gap-[30px]">
           <ContactItem title="Company.">
             <a href="mailto: support@maxius.io" target="_blank">
@@ -25,7 +31,7 @@ export default function ContactSection() {
             </a>
           </ContactItem>
         </ul>
-      </div>
+      </motion.div>
     </Section>
   );
 }

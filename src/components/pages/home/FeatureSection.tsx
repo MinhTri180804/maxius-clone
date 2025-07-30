@@ -5,7 +5,10 @@ import { motion, Variants } from 'motion/react';
 
 export default function FeatureSection() {
   return (
-    <Section className="bg-[url('/feature_banner.png')] bg-cover flex flex-col justify-center items-center">
+    <Section
+      id="feature"
+      className="bg-[url('/feature_banner.png')] bg-cover flex flex-col justify-center items-center"
+    >
       <motion.p
         variants={contentVariants}
         initial="offscreen"
