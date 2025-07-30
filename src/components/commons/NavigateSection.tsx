@@ -25,7 +25,7 @@ export default function NavigateContent() {
   };
 
   return (
-    <ul className="flex flex-col gap-1 z-50 items-end fixed top-1/2 right-[39px]">
+    <ul className="flex flex-col gap-1 z-30 items-end fixed top-1/2 right-[39px]">
       <NavigateItem
         isActive={sectionActive === '#hero'}
         onClick={() => handleClick('hero')}

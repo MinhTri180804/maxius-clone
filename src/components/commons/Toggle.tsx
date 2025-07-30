@@ -6,9 +6,15 @@ import { twMerge } from 'tailwind-merge';
 
 interface IToggleProps extends ComponentProps<'button'> {
   isOpen: boolean;
+  strokeWhite: boolean;
 }
 
-export const Toggle = ({ isOpen, className, ...props }: IToggleProps) => {
+export const Toggle = ({
+  isOpen,
+  strokeWhite,
+  className,
+  ...props
+}: IToggleProps) => {
   return (
     <button
       {...props}
@@ -17,10 +23,11 @@ export const Toggle = ({ isOpen, className, ...props }: IToggleProps) => {
       <motion.svg
         width="30"
         height="30"
-        stroke={isOpen ? 'white' : '#222222'}
+        stroke={strokeWhite ? 'white' : '#222222'}
         viewBox="0 0 30 30"
         animate={isOpen ? 'open' : 'closed'}
         transition={{ duration: 0.1 }}
+        className={'transition-all duration-150'}
       >
         <Path
           variants={{
@@ -59,7 +66,7 @@ const Path = (props: PathProps) => {
       strokeWidth="1.5"
       stroke={props.stroke}
       strokeLinecap="round"
-      className="font-bold"
+      className="font-bold transition-all duration-150"
       {...props}
     />
   );
