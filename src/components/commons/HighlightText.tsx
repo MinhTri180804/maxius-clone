@@ -1,5 +1,5 @@
-import classNames from 'classnames';
 import { ComponentProps, PropsWithChildren } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 interface IHighlightTextProps
   extends PropsWithChildren,
@@ -12,7 +12,7 @@ export default function HighlightText({
 }: IHighlightTextProps) {
   return (
     <span
-      className={classNames('text-[var(--color-deep-saffron)]', className)}
+      className={twMerge('text-[var(--color-deep-saffron)]', className)}
       {...props}
     >
       {children}

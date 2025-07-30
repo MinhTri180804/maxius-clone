@@ -2,14 +2,18 @@
 
 import { type Variants, motion } from 'motion/react';
 import { ComponentProps } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 interface IToggleProps extends ComponentProps<'button'> {
   isOpen: boolean;
 }
 
-export const Toggle = ({ isOpen, ...props }: IToggleProps) => {
+export const Toggle = ({ isOpen, className, ...props }: IToggleProps) => {
   return (
-    <button {...props} className="top-[30px] right-[39px] mt-1 fixed z-50">
+    <button
+      {...props}
+      className={twMerge('top-[30px] right-[39px] mt-1 fixed z-50', className)}
+    >
       <motion.svg
         width="30"
         height="30"
