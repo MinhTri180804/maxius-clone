@@ -1,15 +1,18 @@
-import classNames from 'classnames';
 import { ComponentProps, PropsWithChildren } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 interface ISectionProps extends ComponentProps<'section'>, PropsWithChildren {}
 
-export default function Section({ children, ...props }: ISectionProps) {
-  const classname = classNames(
-    'w-full h-dvh snap-start px-[39px]',
-    props.className
-  );
+export default function Section({
+  children,
+  className,
+  ...props
+}: ISectionProps) {
   return (
-    <section {...props} className={classname}>
+    <section
+      {...props}
+      className={twMerge('w-full h-dvh snap-start px-[39px]', className)}
+    >
       {children}
     </section>
   );
