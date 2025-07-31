@@ -29,7 +29,6 @@ export default function StorySection() {
         variants={titleVariants}
         initial="offscreen"
         whileInView="onscreen"
-        onViewportEnter={() => (window.location.hash = '#story')}
         className={twMerge(
           // Global responsive
           'font-bold text-[25px] text-black uppercase w-full text-center',
