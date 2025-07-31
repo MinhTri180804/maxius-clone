@@ -5,6 +5,7 @@ import { motion, Variants } from 'motion/react';
 import { ComponentProps, FC, useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { Toggle } from './commons/Toggle';
+import { useSectionObserver } from '@/hooks/useSectionObserver';
 
 const whiteColorInSections = ['#feature', '#about', '#contact'];
 
@@ -151,21 +152,7 @@ interface ToggleSidebarProps extends ComponentProps<'button'> {
 }
 
 const ToggleSidebar = ({ isOpen, ...props }: ToggleSidebarProps) => {
-  const [sectionActive, setActionActive] = useState<string | null>(null);
-
-  useEffect(() => {
-    const handleHashChange = () => {
-      setActionActive(window.location.hash);
-    };
-
-    handleHashChange();
-
-    window.addEventListener('hashchange', handleHashChange);
-
-    return () => {
-      window.removeEventListener('hashchange', handleHashChange);
-    };
-  }, []);
+  const sectionActive = useSectionObserver();
 
   return (
     <div>

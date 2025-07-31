@@ -58,7 +58,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="mdl-js">
       <body
-        className={`${roboto.variable} antialiased min-h-dvh w-dvw max-w-dvw relative`}
+        className={`${roboto.variable} antialiased min-h-dvh w-dvw max-w-dvw relative overflow-hidden`}
       >
         <Logo />
         <Sidebar />

@@ -1,27 +1,16 @@
 'use client';
 
-import classNames from 'classnames';
-import { useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { useSectionObserver } from '@/hooks/useSectionObserver';
 
 const whiteColorLogoSections = ['#feature', '#about', '#contact'];
 
 export default function Logo() {
-  const [hash, setHash] = useState<string | null>(null);
+  // This will automatically update when a new section comes into view
+  const activeSection = useSectionObserver();
 
-  useEffect(() => {
-    const handleHashChange = () => {
-      setHash(window.location.hash);
-    };
-
-    handleHashChange();
-
-    window.addEventListener('hashchange', handleHashChange);
-
-    return () => {
-      window.removeEventListener('hashchange', handleHashChange);
-    };
-  }, []);
+  // Determine if the logo should be white based on the active section
+  const shouldBeWhite = whiteColorLogoSections.includes(activeSection);
 
   return (
     <div
@@ -34,9 +23,8 @@ export default function Logo() {
         '',
         // Desktop responsive
         'lg:left-[100px] lg:top-[50px]',
-        classNames({
-          'text-white': hash && whiteColorLogoSections.includes(hash),
-        })
+        // Apply white text when shouldBeWhite is true
+        shouldBeWhite ? 'text-white' : ''
       )}
     >
       maxius

@@ -1,26 +1,13 @@
 'use client';
+import { useSectionObserver } from '@/hooks/useSectionObserver';
 import classNames from 'classnames';
-import { ComponentProps, useEffect, useState } from 'react';
+import { ComponentProps } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 export default function NavigateContent() {
-  const [sectionActive, setSectionActive] = useState<string | null>(null);
-
-  useEffect(() => {
-    const handleChangeSection = () => {
-      setSectionActive(window.location.hash);
-    };
-
-    handleChangeSection();
-
-    window.addEventListener('hashchange', handleChangeSection);
-    return () => {
-      window.removeEventListener('hashchange', handleChangeSection);
-    };
-  }, [sectionActive]);
+  const sectionActive = useSectionObserver();
 
   const handleClick = (id: string) => {
-    setSectionActive(`#${id}`);
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
