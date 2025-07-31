@@ -12,7 +12,6 @@ export default function ContactSection() {
       className="bg-[url('/contact_banner.png')] bg-cover relative "
     >
       <motion.div
-        onViewportEnter={() => (window.location.hash = '#contact')}
         className={twMerge(
           // Global responsive
           'absolute  ',

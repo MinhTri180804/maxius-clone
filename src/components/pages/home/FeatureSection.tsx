@@ -14,7 +14,6 @@ export default function FeatureSection() {
         variants={contentVariants}
         initial="offscreen"
         whileInView="onscreen"
-        onViewportEnter={() => (window.location.hash = '#feature')}
         className={twMerge(
           // Global responsive
           'text-xl font-bold break-all mx-[10%] px-[25px] leading-[1.18] text-white whitespace-pre-wrap',

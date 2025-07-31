@@ -25,7 +25,6 @@ export default function HeroSection() {
           variants={variantTitle}
           initial="offscreen"
           whileInView="onscreen"
-          onViewportEnter={() => (window.location.hash = '#hero')}
           className={twMerge(
             // Global responsive
             'uppercase font-roboto font-bold text-title-hero-section',

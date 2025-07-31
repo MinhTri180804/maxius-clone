@@ -14,7 +14,6 @@ export default function AboutSection() {
       className="flex justify-center px-[39px] items-center bg-[url('/about_banner.png')] bg-cover relative"
     >
       <motion.ul
-        onViewportEnter={() => (window.location.hash = '#about')}
         viewport={{ amount: 0.1 }}
         className={twMerge(
           // Global responsive

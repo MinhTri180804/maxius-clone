@@ -11,8 +11,10 @@ export const revalidate = false;
 
 // Page-specific metadata for better SEO
 export const metadata: Metadata = {
-  title: 'MAXIUS - High-Performance Server Solutions | Leading Semiconductor Company',
-  description: 'Discover MAXIUS high-performance servers with self-developed semiconductors. 20+ years of innovation in AI, blockchain, and data center solutions. Trusted by 1000+ companies.',
+  title:
+    'MAXIUS - High-Performance Server Solutions | Leading Semiconductor Company',
+  description:
+    'Discover MAXIUS high-performance servers with self-developed semiconductors. 20+ years of innovation in AI, blockchain, and data center solutions. Trusted by 1000+ companies.',
   alternates: {
     canonical: 'https://maxius.io',
   },
@@ -23,7 +25,8 @@ const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'MAXIUS Corporation',
-  description: 'Leading self-developed semiconductor company specializing in High-Performance Servers',
+  description:
+    'Leading self-developed semiconductor company specializing in High-Performance Servers',
   url: 'https://maxius.io',
   logo: 'https://maxius.io/logo.png',
   foundingDate: '1996',
@@ -40,9 +43,7 @@ const structuredData = {
     contactType: 'customer service',
     email: 'support@maxius.io',
   },
-  sameAs: [
-    'https://maxius.io',
-  ],
+  sameAs: ['https://maxius.io'],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'High-Performance Server Solutions',
@@ -52,7 +53,8 @@ const structuredData = {
         itemOffered: {
           '@type': 'Product',
           name: 'High-Performance Servers',
-          description: 'Self-developed semiconductor-based high-performance servers',
+          description:
+            'Self-developed semiconductor-based high-performance servers',
         },
       },
       {
@@ -60,7 +62,8 @@ const structuredData = {
         itemOffered: {
           '@type': 'Service',
           name: 'AI Solutions',
-          description: 'AI-based adaptive security systems and genetic analysis',
+          description:
+            'AI-based adaptive security systems and genetic analysis',
         },
       },
       {
@@ -83,8 +86,6 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      
-      {/* Main content */}
       <HeroSection />
       <FeatureSection />
       <AboutSection />
